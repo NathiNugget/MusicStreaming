@@ -9,10 +9,7 @@ pub fn read_number() -> u16 {
         let res = buf.trim().parse::<u16>();
         match res {
             Ok(val) => {
-                match val {
-                    0 => {return val},
-                    _ => return val
-                }
+                return val;
             }
             Err(_) => {
                 println!("Venligst skriv en værdi indenfor rækkevidden 1-255");

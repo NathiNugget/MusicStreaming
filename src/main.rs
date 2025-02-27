@@ -1,11 +1,11 @@
-mod song_libery;
+mod song_lib;
 mod user_input;
 mod music_player;
 use rodio::{Source};
 use std::io::{Write};
-use song_libery::read_songs;
-use music_player::play_song;
-use song_libery::print_songs;
+use song_lib::read_songs;
+use music_player::initialize_player;
+use song_lib::print_songs;
 
 
 
@@ -20,7 +20,7 @@ fn main() {
                 match _res {
 
                     Ok(true) => {
-                        let play_res = play_song(&s);
+                        let play_res = initialize_player(&s);
                         if let Err(e) = play_res {
                             println!("error med afspiling (play_song()) og ikke at finde sangen: {}", e);
                         }
@@ -37,8 +37,8 @@ fn main() {
                 }
             }
         },
-        Err(e) => {
-            println!("error https status code 500 lowkey"); // fanger songs error/fejlen
+        Err(_) => {
+            println!("error HTTP status code 500 lowkey"); // fanger songs error/fejlen
         }
     }
 }

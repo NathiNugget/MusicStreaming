@@ -8,7 +8,7 @@ pub fn read_songs() -> Result<Option<Vec<String>>, Error> {
     for song in file {
         match song {
             Ok(entry) => track_paths.push(entry.path().display().to_string()),
-            Err(_) => return Err(Error::new(ErrorKind::NotFound, "File could not be read")),
+            Err(_) => return Err(Error::new(ErrorKind::AddrInUse, "Some file could not be read")),
         }
     }
     Ok(Some(track_paths))
